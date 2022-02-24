@@ -2,8 +2,11 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { newTasksAction } from '../actions/tasksActions'
+import { useNavigate } from 'react-router-dom';
+
 
 const NewTasks = () => {
+    let navigate = useNavigate()
 
     const [ name, saveName ] = useState('')
 
@@ -24,6 +27,8 @@ const NewTasks = () => {
         addTasks({
             name
         });
+
+        navigate('/');
     }
 
 

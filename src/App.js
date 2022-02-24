@@ -4,7 +4,7 @@ import Tasks from './components/Tasks';
 import NewTasks from './components/NewTasks'
 import EditTasks from './components/EditTasks'
 
-import { BrowserRouter as Router, Route, Routes} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from './store'
 
