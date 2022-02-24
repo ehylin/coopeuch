@@ -1,6 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { newTasksAction } from '../actions/tasksActions'
 
 const NewTasks = () => {
+
+    const [ name, saveName ] = useState('')
+
+    const dispatch = useDispatch();
+
+    const addTasks = task => dispatch( newTasksAction(task) )
+
+    const submitNewTasks = e =>{
+        e.preventDefault();
+
+        if(name.trim() === ''){
+            return;
+        }
+
+        addTasks({
+            name
+        });
+    }
+
+
 return(
     <div className='row justify-content-center'>
         <div className='col-md-8'>
@@ -10,7 +33,7 @@ return(
                             Agregar nueva tarea
                     </h2>
 
-                    <form>
+                    <form onSubmit={submitNewTasks}>
                         <div className='form-group'>
                             <label>Nombre tarea</label>
                             <input
@@ -18,6 +41,8 @@ return(
                             className='form-control'
                             placeholder='Nombre tarea' 
                             name='name'
+                            value={name}
+                            onChange={e => saveName(e.target.value)}
                         />
                         </div>
                         <button

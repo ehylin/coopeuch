@@ -5,11 +5,14 @@ import NewTasks from './components/NewTasks'
 import EditTasks from './components/EditTasks'
 
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom'
+import { Provider } from 'react-redux'
+import store from './store'
 
 
 function App() {
   return (
     <Router>
+      <Provider store={store}>
       <Header />
       <div className='container mt-5'>
         <Routes>
@@ -18,6 +21,7 @@ function App() {
           <Route exact path='/tarea/edita/:id' element={<EditTasks/>} />
         </Routes>
       </div>
+      </Provider>
     </Router>
   );
 }

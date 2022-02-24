@@ -1,0 +1,12 @@
+{
+    "tareas": [
+      {
+        "id": 1,
+        "nombre": "Ir al mercado"
+      },
+      {
+        "id": 2,
+        "nombre": "Visitar a mi abuela"
+      }
+    ]
+  }
