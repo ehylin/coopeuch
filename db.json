@@ -1,12 +1,28 @@
 {
-    "tareas": [
-      {
-        "id": 1,
-        "nombre": "Ir al mercado"
-      },
-      {
-        "id": 2,
-        "nombre": "Visitar a mi abuela"
-      }
-    ]
-  }
+  "tasks": [
+    {
+      "id": 1,
+      "name": "Ir al mercado"
+    },
+    {
+      "id": 2,
+      "name": "Visitar a mi abuela"
+    },
+    {
+      "id": 3,
+      "name": "agregar"
+    },
+    {
+      "name": "nueva tarea",
+      "id": 4
+    },
+    {
+      "name": "supermercado",
+      "id": 5
+    },
+    {
+      "name": "xx",
+      "id": 6
+    }
+  ]
+}

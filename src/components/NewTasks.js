@@ -9,6 +9,9 @@ const NewTasks = () => {
 
     const dispatch = useDispatch();
 
+    const loading = useSelector( state => state.tasks.loading)
+    const error = useSelector( state => state.tasks.error)
+
     const addTasks = task => dispatch( newTasksAction(task) )
 
     const submitNewTasks = e =>{
@@ -51,7 +54,8 @@ return(
                             Agregar
                         </button>
                     </form>
-
+                    { loading ? <p>Cargando...</p> : null}
+                    { error ? <p className='alert alert-danger p2 mt-4 text-center'>Hubo un error</p> : null}
                 </div>
             </div>
         </div>
