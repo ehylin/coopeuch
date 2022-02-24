@@ -6,3 +6,11 @@ export const START_DOW_TASKS = 'START_DOW_TASKS'
 export const DOW_TASKS_OK = 'DOW_TASKS_OK'
 export const DOW_TASKS_ERROR = 'DOW_TASKS_ERROR'
 
+export const GET_TASK_DELETE = 'GET_TASK_DELETE'
+export const TASK_DELETE_OK = 'TASK_DELETE_OK'
+export const TASK_DELETE_ERROR = 'TASK_DELETE_ERROR'
+
+export const GET_TASK_EDIT = 'GET_TASK_EDIT'
+export const START_EDIT_TASK ='START_EDIT_TASK'
+export const TASK_EDIT_OK = 'TASK_EDIT_OK'
+export const TASK_EDIT_ERROR = 'TASK_EDIT_ERROR'

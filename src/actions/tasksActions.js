@@ -4,7 +4,14 @@ import {
     ADD_TASKS_ERROR,
     START_DOW_TASKS,
     DOW_TASKS_OK,
-    DOW_TASKS_ERROR
+    DOW_TASKS_ERROR,
+    GET_TASK_DELETE,
+    TASK_DELETE_OK,
+    TASK_DELETE_ERROR,
+    GET_TASK_EDIT,
+    START_EDIT_TASK,
+    TASK_EDIT_OK,
+    TASK_EDIT_ERROR
 
 } from '../types'
 
@@ -82,4 +89,78 @@ const dowloadTasksOk = tasks => ({
 const dowloadTasksError = () => ({
     type: DOW_TASKS_ERROR,
     payload: true
+})
+
+
+export function deleteTaskAction(id){
+    return async (dispatch) => {
+        dispatch(getTasksDelete(id))
+
+        try{
+            await axios.delete(`http://localhost:4000/tasks/${id}`);
+            dispatch( deleteTaskOk())
+
+            Swal.fire(
+                'Eliminar',
+                'La tarea ha sido eliminada correctamente',
+                'success'
+            )
+
+        }catch(error){
+           console.log(error)
+           dispatch( deleteTaskError())
+        }
+        
+    }
+}
+
+const getTasksDelete = id => ({
+    type: GET_TASK_DELETE,
+    payload: id
+})
+
+const deleteTaskOk = () => ({
+    type: TASK_DELETE_OK
+
+})
+
+const deleteTaskError = () => ({
+    type: TASK_DELETE_ERROR,
+    payload: true
+})
+
+
+export function getTaskEdit(task){
+    return (dispatch) => {
+        dispatch( getTaskAction(task))
+    }
+}
+
+const getTaskAction = task => ({
+    type: GET_TASK_EDIT,
+    payload: task
+})
+
+
+export function editTaskAction(task){
+    return async (dispatch)=> {
+        dispatch( editTask() )
+
+        try{
+            await axios.put(`http://localhost:4000/tasks/${task.id}`, task);
+
+            dispatch( editTaskOk(task) )
+        }catch(error){
+           console.log(error)
+          
+        }
+    }
+}
+
+const editTask = () => ({
+    type: START_EDIT_TASK
+})
+const editTaskOk = task => ({
+    type: TASK_EDIT_OK,
+    payload: task
 })

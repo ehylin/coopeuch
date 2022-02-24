@@ -1,16 +1,47 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { deleteTaskAction, getTaskEdit } from '../actions/tasksActions'
+import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router-dom';
 
 const Task = ({task}) => {
-    const { name, id} = task
+    const { name, id} = task;
+    
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const okDeleteTask = id => {
+
+        Swal.fire({
+            title: 'Esta seguro?',
+            text: 'Se eliminara la tarea de la lista',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, eliminar'
+        }).then((result) => {
+            if(result.value){
+                dispatch(deleteTaskAction(id))
+                
+            }
+        })     
+    }
+
+    const redirectEdit = task => {
+        dispatch( getTaskEdit(task))
+        navigate(`/tarea/edita/${task.id}`);
+    }
+
     return(
         <tr>
             <td>{name}</td>
             <td className='actions'>
-                <Link to={`/tarea/edita/${id}`} className='btn btn-primary mr-2'>
+                <button onClick={ () => redirectEdit(task) } className='btn btn-primary mr-2'>
                     Editar
-                </Link>
-                <button type='button' className='btn btn-danger'>
+                </button>
+                <button type='button' className='btn btn-danger' onClick={() => okDeleteTask(id)}>
                     Eliminar
                 </button>
             </td>

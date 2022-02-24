@@ -1,6 +1,40 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import {editTaskAction} from '../actions/tasksActions'
+import { useNavigate } from 'react-router-dom';
 
 const EditTasks = () => {
+    const navigate = useNavigate()
+
+    const dispatch = useDispatch()
+
+    const [ task, saveTask ] = useState({
+        name: ''
+    })
+
+
+    const taskedit = useSelector(state => state.tasks.taskedit)
+    
+    useEffect( () => {
+        saveTask(taskedit)
+    }, [taskedit])
+
+    const onChangeForm = e => {
+        saveTask({
+            ...task,
+            [e.target.name] : e.target.value
+        })
+    }
+
+    const { name } = task
+
+    const submitEditTask = e => {
+        e.preventDefault();
+
+       dispatch(editTaskAction(task)) 
+       navigate('/');
+    }
+
 return(
     <div className='row justify-content-center'>
     <div className='col-md-8'>
@@ -10,7 +44,7 @@ return(
                         Editar Tarea
                 </h2>
 
-                <form>
+                <form onSubmit={submitEditTask}>
                     <div className='form-group'>
                         <label>Nombre tarea</label>
                         <input
@@ -18,6 +52,8 @@ return(
                         className='form-control'
                         placeholder='Nombre tarea' 
                         name='name'
+                        value={name}
+                        onChange={onChangeForm}
                     />
                     </div>
                     <button

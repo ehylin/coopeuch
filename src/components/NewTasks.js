@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const NewTasks = () => {
-    let navigate = useNavigate()
+    const navigate = useNavigate()
 
     const [ name, saveName ] = useState('')
 

@@ -15,16 +15,18 @@ const Tasks = () => {
     }, [])
 
     const tasks = useSelector( state => state.tasks.tasks);
-    console.log(tasks)
-
+    const error = useSelector(state => state.tasks.error);
+    const loading = useSelector(state => state.tasks.loading);
 
 
     return (
         <Fragment>
             <h2 className='text-center my-5'>Listado de tareas</h2>
+                { error ? <p className='font-weight-bold alert alert-danger text-center mt-4'>Hubo un error</p> : null}
 
+                { loading ? <p className='text-center'>Cargando...</p> : null}
             <table className='table table-striped'>
-                <thead className='bg-primary table-dark'>
+                <thead className='bg-dark table-dark'>
                     <tr>
                         <th scope='col'>Nombre</th>
                         <th scope='col'>Acciones</th>
